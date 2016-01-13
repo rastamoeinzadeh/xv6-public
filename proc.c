@@ -473,15 +473,8 @@ ProcRead(int pid)
 
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->state == RUNNING)
-      cprintf(" pid : %s\n",p->name);
+      //return ;
   }
   return 0;
 }
 
-int
-CreateFile(int pid)
-{
-  struct proc *p;
-
-  return 0;
-}

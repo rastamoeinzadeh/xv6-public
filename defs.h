@@ -119,7 +119,6 @@ int             wait(void);
 void            wakeup(void*);
 void            yield(void);
 int             ProcRead(int);
-int             CreateFile(int);
 
 // swtch.S
 void            swtch(struct context**, struct context*);

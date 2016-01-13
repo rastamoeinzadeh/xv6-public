@@ -96,9 +96,3 @@ sys_sleep(void) {
       return -1;
     return ProcRead(pid);
   }
-
-  int
-  CreateFile(void){
-    int f;
-
-  }
