@@ -1702,7 +1702,6 @@ rand()
   randstate = randstate * 1664525 + 1013904223;
   return randstate;
 }
-
 int
 main(int argc, char *argv[])
 {
@@ -1714,7 +1713,7 @@ main(int argc, char *argv[])
   }
   close(open("usertests.ran", O_CREATE));
 
-  createdelete();
+  /*createdelete();
   linkunlink();
   concreate();
   fourfiles();
@@ -1742,7 +1741,7 @@ main(int argc, char *argv[])
   exitwait();
 
   rmdot();
-  fourteen();
+  fourteen();cess
   bigfile();
   subdir();
   linktest();
@@ -1751,7 +1750,8 @@ main(int argc, char *argv[])
   iref();
   forktest();
   bigdir(); // slow
-  exectest();
+  exectest();*/
+  halt();
 
   exit();
 }
