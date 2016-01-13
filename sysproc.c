@@ -89,12 +89,16 @@ sys_sleep(void) {
   }
 
   int
-  sys_halt(void) {
-    //char *p = "SHUTDOWN";
-    int p = 0;
-    for ( p = 0; p < 10; p++) {
-      //outb(0x8900, *p);
-      cprintf("%d", p);
-    }
-    return 0;
+  sys_ProcRead(void) {
+    int pid;
+
+    if(argint(0, &pid) < 0)
+      return -1;
+    return ProcRead(pid);
+  }
+
+  int
+  CreateFile(void){
+    int f;
+
   }

@@ -6,6 +6,8 @@
 #include "x86.h"
 #include "proc.h"
 #include "spinlock.h"
+#include "types.h"
+#include "fcntl.h"
 
 struct {
   struct spinlock lock;
@@ -463,4 +465,23 @@ procdump(void)
     }
     cprintf("\n");
   }
+}
+int
+ProcRead(int pid)
+{
+  struct proc *p;
+
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->state == RUNNING)
+      cprintf(" pid : %s\n",p->name);
+  }
+  return 0;
+}
+
+int
+CreateFile(int pid)
+{
+  struct proc *p;
+
+  return 0;
 }

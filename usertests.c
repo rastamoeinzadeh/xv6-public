@@ -1702,56 +1702,32 @@ rand()
   randstate = randstate * 1664525 + 1013904223;
   return randstate;
 }
+
+void
+save_file(void){
+  struct proc p;
+  p->name = "test";
+  int f = 0 ;
+  f = open("test_file", O_CREATE|O_RDWR);
+  if (f>=0){
+    printf(1,"ok:create file succeed\n");
+  }else {
+    printf(1,"error:create file failed\n");
+    exit();
+  }
+
+  int size = sizeof(p);
+  if(write(f,&p,size)!= size){
+    printf(1,"error write to file failed\n");
+    exit();
+  }
+  printf(1,"write ok\n");
+  close(f);
+}
 int
 main(int argc, char *argv[])
 {
-  printf(1, "usertests starting\n");
-
-  if(open("usertests.ran", 0) >= 0){
-    printf(1, "already ran user tests -- rebuild fs.img\n");
-    exit();
-  }
-  close(open("usertests.ran", O_CREATE));
-
-  /*createdelete();
-  linkunlink();
-  concreate();
-  fourfiles();
-  sharedfd();
-
-  bigargtest();
-  bigwrite();
-  bigargtest();
-  bsstest();
-  sbrktest();
-  validatetest();
-
-  opentest();
-  writetest();
-  writetest1();
-  createtest();
-
-  openiputtest();
-  exitiputtest();
-  iputtest();
-
-  mem();
-  pipe1();
-  preempt();
-  exitwait();
-
-  rmdot();
-  fourteen();cess
-  bigfile();
-  subdir();
-  linktest();
-  unlinkread();
-  dirfile();
-  iref();
-  forktest();
-  bigdir(); // slow
-  exectest();*/
-  halt();
-
+  ProcRead();
+  save_file();
   exit();
 }
