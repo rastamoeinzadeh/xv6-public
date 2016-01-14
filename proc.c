@@ -470,18 +470,27 @@ int
 ProcRead(int pid , int address)
 {
   struct proc* p ;
-  struct proc *input= (struct proc*)address;
+  int* ad= (int*)address;
 
   acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->pid == pid){
-      cprintf("process found");
-      *address= (int)p;
+      cprintf("process found\n");
+      *ad= (int)p;
+      release(&ptable.lock);
       return 0;
     }
   }
-  cprintf("can't find process");
+  cprintf("can't find process\n");
   release(&ptable.lock);
   return -1;
+}
+
+int
+ProcAlloc(int process){
+  int* pr = (int*) process;
+  struct proc* p = allocproc();
+  * pr = (int) p;
+  return 0;
 }
 

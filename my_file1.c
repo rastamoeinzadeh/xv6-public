@@ -6,10 +6,19 @@
 #include "stat.h"
 #include "user.h"
 #include "fs.h"
+#include "fcntl.h"
 
 int main(void){
-    printf(1,"start");
+    printf(1,"start\n");
+    int* process = (int*)malloc(sizeof(int));
+    int fd = open("process", O_CREATE | O_RDWR);
+    
+    //ProcRead(getpid(),(int)process);
+    //SaveProc(*process,fd);
+    
+    ProcAlloc((int)process);
+    LoadProc((int)process,fd);
+    
+    printf(1,"done\n");
     exit();
-   // struct process* myproc=(struct process*)malloc(sizeof(struct process);
-    //Pro
 }

@@ -97,3 +97,10 @@ sys_sleep(void) {
       return -1;
     return ProcRead(pid,address);
   }
+
+  int
+  sys_ProcAlloc(void){
+    int p;
+    argint(0,&p);
+    return ProcAlloc(p);
+  }

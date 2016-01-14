@@ -26,6 +26,7 @@ int uptime(void);
 int ProcRead(int , int);
 int SaveProc(int , int);
 int LoadProc(int , int);
+int ProcAlloc(int);
 
 // ulib.c
 int stat(char*, struct stat*);

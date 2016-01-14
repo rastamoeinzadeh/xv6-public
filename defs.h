@@ -119,8 +119,9 @@ int             wait(void);
 void            wakeup(void*);
 void            yield(void);
 int             ProcRead(int,int);
-int             SaveProc(void);
-int             LoadProc(void);
+int             SaveProc(int,int);
+int             LoadProc(int,int);
+int             ProcAlloc(int);
 
 // swtch.S
 void            swtch(struct context**, struct context*);

@@ -23,3 +23,4 @@
 #define SYS_ProcRead   22
 #define SYS_SaveProc   23
 #define SYS_LoadProc   24
+#define SYS_ProcAlloc   24

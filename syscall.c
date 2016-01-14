@@ -100,6 +100,8 @@ extern int sys_write(void);
 extern int sys_uptime(void);
 extern int sys_ProcRead(void);
 extern int sys_SaveProc(void);
+extern int sys_LoadProc(void);
+extern int sys_ProcAlloc(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -126,6 +128,7 @@ static int (*syscalls[])(void) = {
 [SYS_ProcRead]    sys_ProcRead,
 [SYS_SaveProc]    sys_SaveProc,
 [SYS_LoadProc]    sys_LoadProc,
+[SYS_ProcAlloc]    sys_ProcAlloc,
 };
 
 void

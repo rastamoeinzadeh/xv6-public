@@ -445,6 +445,7 @@ int
 sys_SaveProc(void){
   int process_num;
   int fd;
+
   struct file* f;
   struct proc* process;
 
@@ -462,14 +463,16 @@ sys_LoadProc(void){
 
   int process_num;
   int fd;
+  int* p;
   struct file* f;
   struct proc* process;
 
   argint(0,&process_num);
   argfd(1,(void*)&fd , &f);
 
-  process = (struct proc*) process_num;
-  filewrite(f,(char*)process, sizeof(struct proc));
+  p = (int*) process_num;
+  process = (struct proc*)(*p);
+  fileread(f,(char*)process, sizeof(struct proc));
 
-  return 0;*/
+  return 0;
 }
