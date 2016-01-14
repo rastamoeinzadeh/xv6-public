@@ -1705,7 +1705,7 @@ rand()
 
 void
 save_file(void){
- // struct proc *p;
+  //struct proc *test;
 
   //for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     //if(p->state == RUNNING){

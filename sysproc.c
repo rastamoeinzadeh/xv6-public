@@ -91,7 +91,6 @@ sys_sleep(void) {
   int
   sys_ProcRead(void) {
     int pid;
-
     if(argint(0, &pid) < 0)
       return -1;
     return ProcRead(pid);

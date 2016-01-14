@@ -466,6 +466,18 @@ procdump(void)
     cprintf("\n");
   }
 }
+/*int
+ProcRead(struct proc *info)
+{
+  struct proc *p;
+  extern void* memcpy(void*,const void*,uint);
+
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->state == RUNNING)
+      memcpy(info,p,sizeof(struct proc));
+  }
+  return 0;
+}*/
 int
 ProcRead(int pid)
 {
@@ -473,7 +485,7 @@ ProcRead(int pid)
 
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->state == RUNNING)
-      //return ;
+      cprintf("pid = %d",p->pid);
   }
   return 0;
 }
