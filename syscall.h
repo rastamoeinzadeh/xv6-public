@@ -21,3 +21,5 @@
 #define SYS_mkdir  20
 #define SYS_close  21
 #define SYS_ProcRead   22
+#define SYS_SaveProc   23
+#define SYS_LoadProc   24

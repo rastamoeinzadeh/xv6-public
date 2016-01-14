@@ -440,3 +440,36 @@ sys_pipe(void)
   fd[1] = fd1;
   return 0;
 }
+
+int
+sys_SaveProc(void){
+  int process_num;
+  int fd;
+  struct file* f;
+  struct proc* process;
+
+  argint(0,&process_num);
+  argfd(1,(void*)&fd , &f);
+
+  process = (struct proc*) process_num;
+  filewrite(f,(char*)process, sizeof(struct proc));
+
+  return 0;
+}
+
+int
+sys_LoadProc(void){
+
+  int process_num;
+  int fd;
+  struct file* f;
+  struct proc* process;
+
+  argint(0,&process_num);
+  argfd(1,(void*)&fd , &f);
+
+  process = (struct proc*) process_num;
+  filewrite(f,(char*)process, sizeof(struct proc));
+
+  return 0;*/
+}

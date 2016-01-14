@@ -153,4 +153,11 @@ filewrite(struct file *f, char *addr, int n)
   }
   panic("filewrite");
 }
+  int SaveProc(int num,int fd){
+    return 0;
+  }
+
+  int LoadProc(int num,int fd){
+   return 0;
+  }
 

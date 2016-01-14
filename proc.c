@@ -466,27 +466,22 @@ procdump(void)
     cprintf("\n");
   }
 }
-/*int
-ProcRead(struct proc *info)
-{
-  struct proc *p;
-  extern void* memcpy(void*,const void*,uint);
-
-  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-    if(p->state == RUNNING)
-      memcpy(info,p,sizeof(struct proc));
-  }
-  return 0;
-}*/
 int
-ProcRead(int pid)
+ProcRead(int pid , int address)
 {
-  struct proc *p;
+  struct proc* p ;
+  struct proc *input= (struct proc*)address;
 
+  acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-    if(p->state == RUNNING)
-      cprintf("pid = %d",p->pid);
+    if(p->pid == pid){
+      cprintf("process found");
+      *address= (int)p;
+      return 0;
+    }
   }
-  return 0;
+  cprintf("can't find process");
+  release(&ptable.lock);
+  return -1;
 }
 

@@ -1706,28 +1706,22 @@ rand()
 void
 save_file(void){
   //struct proc *test;
-
-  //for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-    //if(p->state == RUNNING){
-      int p=8;
-      int f = 0 ;
-      f = open("my_file", O_CREATE|O_RDWR);
-      if (f>=0){
-        printf(1,"ok:create file succeed\n");
-      }else {
-        printf(1,"error:create file failed\n");
-        exit();
-      }
-
-      int size = sizeof(p);
-      if(write(f,&p,size)!= size){
-        printf(1,"error write to file failed\n");
-        exit();
-      }
-      printf(1,"write ok\n");
-      close(f);
-   // }
-  //}
+  int p=8;
+  int f = 0 ;
+  f = open("my_file", O_CREATE|O_RDWR);
+  if (f>=0){
+    printf(1,"ok:create file succeed\n");
+  }else {
+    printf(1,"error:create file failed\n");
+    exit();
+  }
+  int size = sizeof(p);
+  if(write(f,&p,size)!= size){
+    printf(1,"error write to file failed\n");
+    exit();
+  }
+  printf(1,"write ok\n");
+  close(f);
 }
 
 void
@@ -1754,8 +1748,8 @@ load_file(void){
 int
 main(int argc, char *argv[])
 {
-  ProcRead();
-  save_file();
-  load_file();
+ // ProcRead();
+ // save_file();
+  //load_file();
   exit();
 }
