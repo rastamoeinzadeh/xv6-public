@@ -119,8 +119,8 @@ int             wait(void);
 void            wakeup(void*);
 void            yield(void);
 int             ProcRead(int,int);
-int             SaveProc(int,int);
-int             LoadProc(int,int);
+int             SaveProc(int,int,int);
+int             LoadProc(int,int,int);
 int             ProcAlloc(int);
 
 // swtch.S
@@ -177,7 +177,9 @@ int             deallocuvm(pde_t*, uint, uint);
 void            freevm(pde_t*);
 void            inituvm(pde_t*, char*, uint);
 int             loaduvm(pde_t*, char*, struct inode*, uint, uint);
-pde_t*          copyuvm(pde_t*, uint);
+pde_t*          vm(pde_t*, uint);
+pde_t*          save_page(pde_t*, uint , struct file*);
+pde_t*          load_page(pde_t*, uint , struct file*);
 void            switchuvm(struct proc*);
 void            switchkvm(void);
 int             copyout(pde_t*, uint, void*, uint);

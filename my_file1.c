@@ -12,9 +12,10 @@ int main(void){
     printf(1,"start save\n");
     int* process = (int*)malloc(sizeof(int));
     int fd = open("process", O_CREATE | O_RDWR);
+    int fd2 = open("process_page", O_CREATE | O_RDWR);
     
     ProcRead(getpid(),(int)process);
-    SaveProc(*process,fd);
+    SaveProc(*process,fd,fd2);
     
     printf(1,"save done\n");
     exit();

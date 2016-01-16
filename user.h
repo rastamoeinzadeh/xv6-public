@@ -24,8 +24,8 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 int ProcRead(int , int);
-int SaveProc(int , int);
-int LoadProc(int , int);
+int SaveProc(int , int , int);
+int LoadProc(int , int , int);
 int ProcAlloc(int);
 
 // ulib.c

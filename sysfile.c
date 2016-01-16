@@ -444,17 +444,19 @@ sys_pipe(void)
 int
 sys_SaveProc(void){
   int process_num;
-  int fd;
+  int fd,fd2;
 
   struct file* f;
+  struct file* fpg;
   struct proc* process;
 
   argint(0,&process_num);
   argfd(1,(void*)&fd , &f);
+  argfd(2,(void*)&fd2 , &fpg);
 
   process = (struct proc*) process_num;
   filewrite(f,(char*)process, sizeof(struct proc));
-
+  save_page(process->pgdir , process->sz, fpg);
   return 0;
 }
 
@@ -462,17 +464,19 @@ int
 sys_LoadProc(void){
 
   int process_num;
-  int fd;
+  int fd,fd2;
   int* p;
   struct file* f;
+  struct file* fpg;
   struct proc* process;
 
   argint(0,&process_num);
   argfd(1,(void*)&fd , &f);
+  argfd(2,(void*)&fd2 , &fpg);
 
   p = (int*) process_num;
   process = (struct proc*)(*p);
   fileread(f,(char*)process, sizeof(struct proc));
-
+  load_page(process->pgdir , process->sz , fpg);
   return 0;
 }
