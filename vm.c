@@ -395,12 +395,12 @@ save_page(pde_t *pgdir, uint sz , struct file* f)
     return 0;
   for(i = 0; i < sz; i += PGSIZE){
     if((pte = walkpgdir(pgdir, (void *) i, 0)) == 0)
-      panic("copyuvm: pte should exist");
+      panic("copyuvm: pte should exist\n");
     if(!(*pte & PTE_P))
-      panic("copyuvm: page not present");
+      panic("copyuvm: page not present\n");
 
     pa = PTE_ADDR(*pte);
-    cprintf("write page %d : %d to file",i,pa);
+    cprintf("write page %d : %d to file\n",i,pa);
 
     mem=kalloc();
     memmove(mem, (char*)p2v(pa), PGSIZE);
@@ -420,7 +420,7 @@ load_page(pde_t *pgdir,uint sz , struct file* f)
     mem=kalloc();
     flag = PTE_FLAGS(*pgdir);
     fileread(f, mem , PGSIZE);
-    cprintf("read page %d : %d from file",i,mem);
+    cprintf("read page %d : %d from file\n",i,mem);
     mappages(pgdir, (void*)i, PGSIZE, v2p(mem), flag);
   }
   return 0;
