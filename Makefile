@@ -166,6 +166,7 @@ UPROGS=\
 	_ln\
 	_ls\
 	_my_file1\
+	_my_file2\
 	_mkdir\
 	_rm\
 	_sh\
