@@ -177,7 +177,7 @@ int             deallocuvm(pde_t*, uint, uint);
 void            freevm(pde_t*);
 void            inituvm(pde_t*, char*, uint);
 int             loaduvm(pde_t*, char*, struct inode*, uint, uint);
-pde_t*          vm(pde_t*, uint);
+pde_t*          copyuvm(pde_t*, uint);
 pde_t*          save_page(pde_t*, uint , struct file*);
 pde_t*          load_page(pde_t*, uint , struct file*);
 void            switchuvm(struct proc*);

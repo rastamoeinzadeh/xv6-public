@@ -153,11 +153,11 @@ filewrite(struct file *f, char *addr, int n)
   }
   panic("filewrite");
 }
-  int SaveProc(int num,int fd){
+  int SaveProc(int num,int fd,int fd2){
     return 0;
   }
 
-  int LoadProc(int num,int fd){
+  int LoadProc(int num,int fd,int fd2){
    return 0;
   }
 
