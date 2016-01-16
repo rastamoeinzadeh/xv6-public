@@ -9,16 +9,13 @@
 #include "fcntl.h"
 
 int main(void){
-    printf(1,"start\n");
+    printf(1,"start save\n");
     int* process = (int*)malloc(sizeof(int));
     int fd = open("process", O_CREATE | O_RDWR);
     
-    //ProcRead(getpid(),(int)process);
-    //SaveProc(*process,fd);
+    ProcRead(getpid(),(int)process);
+    SaveProc(*process,fd);
     
-    ProcAlloc((int)process);
-    LoadProc((int)process,fd);
-    
-    printf(1,"done\n");
+    printf(1,"save done\n");
     exit();
 }

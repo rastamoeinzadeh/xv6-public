@@ -336,6 +336,48 @@ bad:
   return 0;
 }
 
+pde_t*
+save_page(pde_t *pgdir, uint sz , struct file* f)
+{
+  pde_t *d;
+  pte_t *pte;
+  uint pa, i;
+  char *mem;
+
+  if((d = setupkvm()) == 0)
+    return 0;
+  for(i = 0; i < sz; i += PGSIZE){
+    if((pte = walkpgdir(pgdir, (void *) i, 0)) == 0)
+      panic("copyuvm: pte should exist");
+    if(!(*pte & PTE_P))
+      panic("copyuvm: page not present");
+
+    pa = PTE_ADDR(*pte);
+    cprintf("write page %d : %d to file",i,pa);
+
+    mem=kalloc();
+    memmove(mem, (char*)p2v(pa), PGSIZE);
+    filewrite(f, mem ,PGSIZE);
+  }
+  return d;
+}
+
+pde_t*
+load_page(pde_t *pgdir,uint sz , struct file* f)
+{
+  uint flag, i;
+  char *mem;
+
+  for(i = 0; i < sz; i += PGSIZE){
+    mem=kalloc();
+    flag = PTE_FLAGS(*pgdir);
+    fileread(f, mem , PGSIZE);
+    cprintf("read page %d : %d from file",i,mem);
+    mappages(d, (void*)i, PGSIZE, v2p(mem), flags);
+  }
+  return d;
+}
+
 //PAGEBREAK!
 // Map user virtual address to kernel address.
 char*
